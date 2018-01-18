@@ -17,6 +17,8 @@
       <tr>
         <td><%= review.rating %></td>
         <td><%= review.comments %></td>
+        <td><%= review.user ? review.user.username : "Anonymous" %></td>
+        <% p review.user %>
       </tr>
     <% end %>
   </tbody>

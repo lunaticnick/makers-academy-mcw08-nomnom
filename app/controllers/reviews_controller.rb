@@ -26,6 +26,8 @@ class ReviewsController < ApplicationController
   def create
     @restaurant = Restaurant.find(params[:restaurant_id])
     @review = @restaurant.reviews.create(review_params)
+    @review.user = current_user
+    @review.save
     redirect_to restaurant_path(@restaurant)
   end
 
@@ -62,6 +64,6 @@ class ReviewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params.require(:review).permit(:rating, :comments)
+      params.require(:review).permit(:rating, :comments, :user)
     end
 end
