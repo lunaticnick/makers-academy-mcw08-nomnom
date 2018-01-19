@@ -1,7 +1,5 @@
-<% def reviews_path review
 
-end %>
-<%= form_with(model: review, local: true) do |form| %>
+<%= form_with(model: [@restaurant, @restaurant.reviews.build], local: true) do |form| %>
   <% if review.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
