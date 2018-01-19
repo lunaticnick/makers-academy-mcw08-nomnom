@@ -2,11 +2,7 @@ require 'test_helper'
 
 class RestaurantsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    p 'start setup'
     @restaurant = restaurants(:one)
-    p 'finish setup'
-    p @restaurant
-    p @restaurant.user
   end
 
   test "should get index" do
@@ -49,4 +45,5 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to restaurants_url
   end
+  
 end
