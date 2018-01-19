@@ -1,11 +1,12 @@
-.star-rating {
+.star-rating-display {
   unicode-bidi: bidi-override;
   color: #c5c5c5;
-  margin: 0 auto;
+  height: 30px;
+  width: 125px;
   position: relative;
 }
 
-.top {
+.top-stars {
   unicode-bidi: bidi-override;
   color: #c5c5c5;
   font-size: 25px;
@@ -19,7 +20,7 @@
   overflow: hidden;
 }
 
-.bottom {
+.bottom-stars {
   unicode-bidi: bidi-override;
   color: #c5c5c5;
   font-size: 25px;
