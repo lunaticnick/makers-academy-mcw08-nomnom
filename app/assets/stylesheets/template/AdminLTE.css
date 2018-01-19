@@ -19,6 +19,7 @@ body {
 .layout-boxed html,
 .layout-boxed body {
   height: 100%;
+  min-height: 100%;
 }
 body {
   font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -99,7 +100,6 @@ body {
 }
 .content-wrapper {
   min-height: 100%;
-
   z-index: 800;
   align-items: stretch;
 }

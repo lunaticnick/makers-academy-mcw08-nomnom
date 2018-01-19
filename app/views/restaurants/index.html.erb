@@ -17,8 +17,10 @@
         <td><%= restaurant.name %></td>
         <td><%= restaurant.description %></td>
         <td><%= button_to 'Show', restaurant, method: :get%></td>
-        <td><%= button_to 'Edit', edit_restaurant_path(restaurant), method: :get%></td>
-        <td><%= button_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user == restaurant.user %>
+          <td><%= button_to 'Edit', edit_restaurant_path(restaurant), method: :get%></td>
+          <td><%= button_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>  
       </tr>
     <% end %>
   </tbody>
