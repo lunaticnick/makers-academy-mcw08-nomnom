@@ -2,7 +2,7 @@
   <div class="container">
 
 <div class="row">
-<div class="col-lg-3">
+<div class="col-lg-5">
   <h1>
   <p>
     <strong>
@@ -37,6 +37,7 @@
           <td><%= review.rating %></td>
           <td><%= review.comments %></td>
           <td><%= review.user ? review.user.username : "Anonymous" %></td>
+          
           <td><%= link_to 'Delete', restaurant_review_path(@restaurant, review), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
         <% end %>

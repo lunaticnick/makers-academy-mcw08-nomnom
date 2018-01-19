@@ -11,6 +11,7 @@
  */
 html,
 body {
+  min-height: 100%;
   height: 100%;
 }
 .layout-boxed html,
@@ -65,7 +66,8 @@ body {
   -moz-transition: -moz-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
   -o-transition: -o-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
-  margin-left: 230px;
+  margin-left: 15%;
+  margin-right: 15%;
   z-index: 820;
 }
 .layout-top-nav .content-wrapper,
@@ -95,7 +97,7 @@ body {
 }
 .content-wrapper {
   min-height: 100%;
-  background-color: #ecf0f5;
+
   z-index: 800;
   align-items: stretch;
 }

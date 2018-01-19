@@ -5,7 +5,7 @@
   <nav class="navbar navbar-static-top" role="navigation">
     <div class="navbar-custom-menu">
       <ul class="nav navbar-nav">
-        <li class="dropdown messages-menu">
+        <!-- <li class="dropdown messages-menu">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <i class="fa fa-envelope-o">
             </i><span class="label label-success">4</span>
@@ -38,8 +38,8 @@
               <a href="#"> See All Messages</a>
             </li>
           </ul>
-        </li>
-        <li class="dropdown notifications-menu">
+        </li> -->
+        <!-- <li class="dropdown notifications-menu">
 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <i class="fa fa-bell-o">
             </i><span class="label label-warning">10</span>
@@ -93,11 +93,12 @@
               <a href="#"> View all tasks</a>
             </li>
           </ul>
-        </li>
+        </li> -->
+        <% if current_user %>
         <li class="dropdown user user-menu">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <img alt="User Image" class="user-image" src="http://placehold.it/160x160" />
-          <span class="hidden-xs">Alexander Pierce</span>
+          <span class="hidden-xs"><%= current_user.username %></span>
           </a>
           <ul class="dropdown-menu">
             <li class="user-header">
@@ -123,11 +124,17 @@
                 <a class="btn btn-default btn-flat" href="#"> Profile</a>
               </div>
               <div class="pull-right">
-                <a class="btn btn-default btn-flat" href="#"> Sign out</a>
+                <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
+                <!-- <button type=submit formaction="<% destroy_user_session_path %>" formmethod=DELETE>Sign Out</button>
+                <a class="btn btn-default btn-flat" action=DELETE href= "<% destroy_user_session_path %>"> Sign out</a> -->
               </div>
             </li>
           </ul>
         </li>
+        <% else %>
+          <%= button_to "Log In", new_user_session_path, method: :get %>
+          <%= button_to "Sign Up", new_user_registration_path, method: :get %>
+        <% end %>
       </ul>
     </div>
   </nav>
