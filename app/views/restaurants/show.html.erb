@@ -24,19 +24,23 @@
   </tbody>
 </table>
 
-<h2>Add a review:</h2>
-<%= form_with(model: [ @restaurant, @restaurant.reviews.build ]) do |form| %>
-  <p>
-    <%= form.label :rating %><br>
-    <%= form.text_field :rating %>
-  </p>
-  <p>
-    <%= form.label :comments %><br>
-    <%= form.text_area :comments %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
+<% p "r user = " + @restaurant.user.to_s %>
+<% p "current user" + current_user.to_s %>
+<% if @restaurant.user != current_user %>
+  <h2>Add a review:</h2>
+  <%= form_with(model: [ @restaurant, @restaurant.reviews.build ]) do |form| %>
+    <p>
+      <%= form.label :rating %><br>
+      <%= form.text_field :rating %>
+    </p>
+    <p>
+      <%= form.label :comments %><br>
+      <%= form.text_area :comments %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
 <% end %>
 
 <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
