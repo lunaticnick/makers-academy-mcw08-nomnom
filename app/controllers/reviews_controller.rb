@@ -27,23 +27,28 @@ class ReviewsController < ApplicationController
   def create
     @review = @restaurant.reviews.create(review_params)
     @review.user = current_user
-    @review.save
-    redirect_to restaurant_path(@restaurant)
+    respond_to do |format|
+    if @review.save
+      format.html { redirect_to restaurant_path(@restaurant), notice: 'Review was successfully created' }
+    else
+      format.html { redirect_to restaurant_path(@restaurant), notice:  @review.errors.full_messages.join("\n")}
+    end
+  end
   end
 
   # PATCH/PUT /reviews/1
   # PATCH/PUT /reviews/1.json
-  def update
-    respond_to do |format|
-      if @review.update(review_params)
-        format.html { redirect_to restaurant_path(@restaurant), notice: 'Review was successfully updated.' }
-        format.json { render :show, status: :ok, location: @review }
-      else
-        format.html { render :edit }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @review.update(review_params)
+  #       format.html { redirect_to restaurant_path(@restaurant), notice: 'Review was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @review }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @review.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /reviews/1
   # DELETE /reviews/1.json

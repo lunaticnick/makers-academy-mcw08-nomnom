@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-4">
       <h1>
         <p>
           <strong>
@@ -20,11 +20,8 @@
       <% end %>
 
       <div align='left'>
-        <div class="star-rating-display">
-          <div class="top-stars" style="width: <%=@restaurant.average_rating%>%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="bottom-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-        </div>
-        <h5>Average Rating: <%=(@restaurant.average_rating/20).round(1)%>/5.0</h5>
+        <%= stars(@restaurant.average_rating).html_safe %>
+        <h5>Average Rating: <%=(@restaurant.average_rating).round(1)%>/5.0</h5>
       </div>
 
     <% if @restaurant.user != current_user && not_already_reviewed? %>
@@ -35,29 +32,33 @@
 
     <div class="col-lg-5">
       <h2>Reviews</h2>
-      <table>
+      <table class="table no-border">
         <tbody>
-
           <% @restaurant.reviews.each do |review| %>
           <% if review.id %>
             <tr>
-              <td><%= review.rating %></td>
-              <td><%= review.comments %></td>
-              <td><%= review.user ? review.user.username : "Anonymous" %></td>
-              <% if current_user == review.user %>
-              <td><%= link_to 'Delete', restaurant_review_path(@restaurant, review), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              <% end %>
+              <td style="width:130px"><%= stars(review.rating).html_safe %></td>
+              <td><h4><%= review.user ? review.user.username : "Anonymous" %></h4></td>
             </tr>
+            <tr>
+              <td>
+                <% if current_user == review.user %>
+                <%= button_to 'Delete', restaurant_review_path(@restaurant, review), method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
+              </td>
+              <td><%= review.comments %></td>
+            </tr><br>
             <% end %>
           <% end %>
         </tbody>
       </table>
 
     </div>
-
-  <div class="row align-self-end">
-    <div class="col-lg-6">
-      <p id="notice"><%= notice %></p>
+  </div>
+  <div class="row" style="position:absolute;bottom:0">
+    <div class="col-lg-30">
+      <h3 id="notice"><%= notice %></h3>
     </div>
   </div>
+
 </div>

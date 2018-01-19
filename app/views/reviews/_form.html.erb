@@ -13,13 +13,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :rating %>
+    <%= form.label :rating %><br>
     <%= form.number_field :rating, id: :review_rating %>
   </div>
 
   <div class="field">
-    <%= form.label :comments %>
-    <%= form.text_field :comments, id: :review_comments %>
+    <%= form.label :comments %><br>
+    <%= form.text_area :comments, id: :review_comments %>
   </div>
 
   <div class="actions">
