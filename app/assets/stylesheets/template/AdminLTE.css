@@ -9,7 +9,9 @@
  * Core: General Layout Style
  * -------------------------
  */
-html,
+html {
+  background-color: #FFDFCE;
+}
 body {
   min-height: 100%;
   height: 100%;
