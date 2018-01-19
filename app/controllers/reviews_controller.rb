@@ -1,15 +1,16 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_restaurant, only: [:show, :create, :destroy, :index]
   # GET /reviews
   # GET /reviews.json
   def index
-    @reviews = Review.all
+    #redirect_to restaurant_path(@restaurant)
   end
 
   # GET /reviews/1
   # GET /reviews/1.json
   def show
+    #redirect_to restaurant_path(@restaurant)
   end
 
   # GET /reviews/new
@@ -24,7 +25,6 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    @restaurant = Restaurant.find(params[:restaurant_id])
     @review = @restaurant.reviews.create(review_params)
     @review.user = current_user
     @review.save
@@ -36,7 +36,7 @@ class ReviewsController < ApplicationController
   def update
     respond_to do |format|
       if @review.update(review_params)
-        format.html { redirect_to @review, notice: 'Review was successfully updated.' }
+        format.html { redirect_to restaurant_path(@restaurant), notice: 'Review was successfully updated.' }
         format.json { render :show, status: :ok, location: @review }
       else
         format.html { render :edit }
@@ -50,7 +50,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     respond_to do |format|
-      format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
+      format.html { redirect_to restaurant_path(@restaurant), notice: 'Review was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -60,6 +60,10 @@ class ReviewsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_review
       @review = Review.find(params[:id])
+    end
+
+    def set_restaurant
+      @restaurant = Restaurant.find(params[:restaurant_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
