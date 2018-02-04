@@ -32,6 +32,7 @@ The specifications given were as follows:
 
 ## Solution
 ![Screenshot](/public/NomNom-screenshot.png)
+
 Our finished app met all specifications, though given more time we would have liked to add profile images to restaurants and users, as well as tidying up the layout of the page.
 
 ## How to install
